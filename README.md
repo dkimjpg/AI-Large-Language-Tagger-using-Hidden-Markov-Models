@@ -1,2 +1,11 @@
-# Large-Language-Tagger-using-Hidden-Markov-Models
-An implementation of a language part-of-speech (POS) tagger using Hidden Markov Models. Basically, it takes English text as input and tries to tag each word as a noun, verb, adjective, etc.
+# About this repository:
+This is a repository for the language part-of-speech (POS) tagger I coded that uses Hidden Markov Models. Basically, it takes English text as input and tries to tag each word as a noun, verb, adjective, etc based on the input's sequence. After all, some words may have a different tag based on how it is being used in the sentence. For example, the word "rock" can be either a noun or a verb, as it could refer to a stone or it could refer to the action of moving something from side to side.
+
+# How this Large Language Tagger works:
+To summarize, it first takes in training data and then uses it to train itself on what to categorize as a part-of-speech. Then, it takes an input of words (could be a sentence, some words, or whatever text that the user provides) and it tags each word as a some kind of part-of-speech based on the input's sequence of words. This is done by calculating tag probabilities based on the original training data and then using those probabilities to determine what tag should be given to the current word that is being tagged based on the sequence of words. Computation of a word's tag is done by computing the probability of the tag sequence that is the most likely to occur, and then reconstructing that sequence from  end to beginning by tracing the backpointers that were generated while computing. And if a word that has not been encountered by the tagger shows up in the input, it will be considered an unknown (depicted as \<UNK\>).
+
+There are two algorithms that the AI tagger uses to compute what a word's tag is. The first algorithm is a similar algorithm to the Forward algorithm while the second algorithm uses the Viterbi algorithm. The Viterbi algorithm tends to yield more accurate results when tagging words.
+
+Additionally, the Large Language Tagger can take txt files as training data with the load_corpus() method, but the methods that take input for tagging, which are most_probable_tags() and viterbi_tags() can only take in lists as input (lists with strings, to be specific). 
+
+Overall, this is an AI that can be trained on data and then use that data to determine what the identity of all the individual tokens of its input are, which is quite useful and has parallels to other popular AIs that use LLMs like ChatGPT.
